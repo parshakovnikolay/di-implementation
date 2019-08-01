@@ -19,9 +19,8 @@ class Container implements ContainerInterface
         if (!$this->has($id)) {
             throw new NotFoundException($id);
         }
-
         $result = $this->values[$id];
-        if ($result instanceof \Closure) {
+        if ($result instanceof LoaderInterface) {
             $result = $result($this);
         }
         return $result;
